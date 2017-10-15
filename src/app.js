@@ -11,11 +11,7 @@ import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
 import './firebase/firebase';
 
-if(PRODUCTION){
-  console.log(" we are runing in production");
-}else{
-  console.log("not in production");
-}
+
 const store = configureStore();
 
 const jsx = (
