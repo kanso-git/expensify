@@ -2,7 +2,8 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import { startAddExpense,addExpense, editExpense, removeExpense ,setExpenses,startSetExpenses} from '../../actions/expenses';
+import { startAddExpense,addExpense, editExpense, 
+  removeExpense ,startRemoveExpense,setExpenses,startSetExpenses} from '../../actions/expenses';
 import expenses from '../fixtures/expenses';
 import database from '../../firebase/firebase';
 
@@ -25,6 +26,36 @@ test('should setup remove expense action object', () => {
     type: 'REMOVE_EXPENSE',
     id: '123abc'
   });
+});
+
+
+//http://arnaudbenard.com/redux-mock-store/
+/*
+  Asynchronous action
+
+  A common usecase for an asynchronous action is a HTTP request to a server. 
+  In order to test those types of actions, you will need to call store.getActions() at the end of the request
+*/
+test('should remove expense from firebase',(done)=>{
+
+    const store = createMockStore({});
+    const id = expenses[0].id;
+
+    store.dispatch(startRemoveExpense({id})).then(()=>{
+      const actions = store.getActions();
+      
+      console.log(JSON.stringify(actions[0],null,3));
+
+      expect(actions[0]).toEqual({
+        type:'REMOVE_EXPENSE',
+        id
+      });
+      return database.ref(`expenses/${id}`).once('value');
+    }).then((snapshot)=>{
+       expect(snapshot.val()).toBeFalsy();
+       done();
+    })
+
 });
 
 test('should setup edit expense action object', () => {
