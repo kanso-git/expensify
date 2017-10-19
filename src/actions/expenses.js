@@ -35,15 +35,17 @@ export const removeExpense = ({ id } = {}) => ({
 
 
 
-// startRemoveExpense
-export const startRemoveExpenese = ({ id }={}) =>{
-    return (dispatch)=> {
-       return  database.ref(`expenses/${id}`).remove().then(()=>{
-          dispatch(removeExpense({id}));
-        })
-  }
-};
 
+/**
+ * Asynchronous action
+ */
+export const startRemoveExpense = ({ id } = {}) =>{
+  return (dispatch)=> {
+    return database.ref(`expenses/${id}`).remove().then(() => {
+      dispatch(removeExpense({id}));
+  })
+}
+}
 
 // EDIT_EXPENSE
 export const editExpense = (id, updates) => ({
@@ -53,6 +55,19 @@ export const editExpense = (id, updates) => ({
 });
 
 
+
+/**
+ * Asynchronous action
+ */
+export const startEditExpense = (id, updates) => {
+  return (dispatch)=>{
+    const promiseUpdateFirebase = database.ref(`expenses/${id}`).update({...updates}).then(()=>{
+      dispatch(editExpense(id, updates));
+    })
+    return promiseUpdateFirebase;
+  }
+
+}
 //SET EXPENSES
 export const setExpenses = (expenses)=>{
   return {
