@@ -23,6 +23,7 @@ const jsx = (
 );
 
  const  promise = store.dispatch(startSetExpenses());
+
  promise.then(()=>{
     ReactDOM.render(jsx, document.getElementById('app'));
  })
