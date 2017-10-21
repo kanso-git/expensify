@@ -12,6 +12,8 @@ import 'react-dates/lib/css/_datepicker.css';
 import  database from './firebase/firebase';
 
 
+
+
 const store = configureStore();
 
 const jsx = (
@@ -25,5 +27,8 @@ const jsx = (
     ReactDOM.render(jsx, document.getElementById('app'));
  })
 ReactDOM.render(<p>loading ...</p>, document.getElementById('app'));
+
+
+
 
 
