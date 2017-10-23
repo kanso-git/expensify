@@ -1,0 +1,8 @@
+to list the current branches use: 
+git branch -a
+
+to create a new branch use:
+git branch mynewbranch
+
+to switch from master to a branch use:
+git checkout mynewbranch

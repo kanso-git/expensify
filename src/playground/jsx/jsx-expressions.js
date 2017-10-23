@@ -21,7 +21,7 @@ const template =(
 );
 /*
 JSX Expressions:
-  JSX support javascript experssions(variables, functions .etc.) written inside curly braces
+  JSX support javascript experssions(variables, JSX string, functions .etc.) written inside curly braces
   NB: By default the Objects are not supported as a react child - the solutions are 
     1-> Use array instead the object 
     2-> wrap the object using createFragment (object) from the React add-ons.
