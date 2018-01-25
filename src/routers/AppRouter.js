@@ -1,27 +1,28 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
-import ExpenseDashboardPage from '../components/ExpenseDashboardPage';
-import AddExpensePage from '../components/AddExpensePage';
-import EditExpensePage from '../components/EditExpensePage';
-import HelpPage from '../components/HelpPage';
+import { Router, Route, Switch, Link, NavLink } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
+import Wt3dDashboardPage from '../components/Wt3dDashboardPage';
+import AddWt3dPage from '../components/AddWt3dPage';
+import EditWt3dPage from '../components/EditWt3dPage';
 import NotFoundPage from '../components/NotFoundPage';
-import Header from '../components/Header';
 import LoginPage from '../components/LoginPage';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
+
+export const history = createHistory();
 
 const AppRouter = () => (
-  <BrowserRouter>
+  <Router history={history}>
     <div>
-       <Header />
-       <Switch>
-       <Route path="/" component={LoginPage} exact={true} />
-        <Route path="/dashboard" component={ExpenseDashboardPage} exact={true} />
-        <Route path="/create" component={AddExpensePage} />
-        <Route path="/edit/:id" component={EditExpensePage} />
-        <Route path="/help" component={HelpPage} />
+      <Switch>
+        <PublicRoute path="/" component={LoginPage} exact />
+        <PrivateRoute path="/dashboard" component={Wt3dDashboardPage} />
+        <PrivateRoute path="/create" component={AddWt3dPage} />
+        <PrivateRoute path="/edit/:id" component={EditWt3dPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>
-  </BrowserRouter>
+  </Router>
 );
 
 export default AppRouter;

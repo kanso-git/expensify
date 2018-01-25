@@ -1,25 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render login page  1`] = `
-<div>
-  <form>
-    username: 
-    <input
-      id="username"
-      type="text"
-    />
-    password: 
-    <input
-      id="password"
-      type="password"
-    />
-    <button
-      id="submitBtn"
-      onClick={[Function]}
-      type="submit"
+exports[`should correctly render LoginPage 1`] = `
+<div
+  className="box-layout"
+>
+  <div
+    className="box-layout__box"
+  >
+    <h1
+      className="box-layout__title"
     >
-       Login to Expensify 
+      Expensify
+    </h1>
+    <p>
+      It's time to get your wt3ds under control.
+    </p>
+    <button
+      className="button"
+    >
+      Login with Google
     </button>
-  </form>
+  </div>
 </div>
 `;

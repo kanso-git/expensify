@@ -1,22 +1,22 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { AddExpensePage } from '../../components/AddExpensePage';
-import expenses from '../fixtures/expenses';
+import { AddWt3dPage } from '../../components/AddWt3dPage';
+import wt3ds from '../fixtures/wt3ds';
 
-let startAddExpense, history, wrapper;
+let startAddWt3d, history, wrapper;
 
 beforeEach(() => {
-  startAddExpense = jest.fn();
+  startAddWt3d = jest.fn();
   history = { push: jest.fn() };
-  wrapper = shallow(<AddExpensePage startAddExpense={startAddExpense} history={history} />);
+  wrapper = shallow(<AddWt3dPage startAddWt3d={startAddWt3d} history={history} />);
 });
 
-test('should render AddExpensePage correctly', () => {
+test('should render AddWt3dPage correctly', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
 test('should handle onSubmit', () => {
-  wrapper.find('ExpenseForm').prop('onSubmit')(expenses[1]);
+  wrapper.find('Wt3dForm').prop('onSubmit')(wt3ds[1]);
   expect(history.push).toHaveBeenLastCalledWith('/');
-  expect(startAddExpense).toHaveBeenLastCalledWith(expenses[1]);
+  expect(startAddWt3d).toHaveBeenLastCalledWith(wt3ds[1]);
 });

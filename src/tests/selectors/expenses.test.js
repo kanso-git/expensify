@@ -1,6 +1,6 @@
 import moment from 'moment';
-import selectExpenses from '../../selectors/expenses';
-import expenses from '../fixtures/expenses';
+import selectWt3ds from '../../selectors/wt3ds';
+import wt3ds from '../fixtures/wt3ds';
 
 test('should filter by text value', () => {
   const filters = {
@@ -9,8 +9,8 @@ test('should filter by text value', () => {
     startDate: undefined,
     endDate: undefined
   };
-  const result = selectExpenses(expenses, filters);
-  expect(result).toEqual([expenses[2], expenses[1]]);
+  const result = selectWt3ds(wt3ds, filters);
+  expect(result).toEqual([wt3ds[2], wt3ds[1]]);
 });
 
 test('should filter by startDate', () => {
@@ -20,8 +20,8 @@ test('should filter by startDate', () => {
     startDate: moment(0),
     endDate: undefined
   };
-  const result = selectExpenses(expenses, filters);
-  expect(result).toEqual([expenses[2], expenses[0]]);
+  const result = selectWt3ds(wt3ds, filters);
+  expect(result).toEqual([wt3ds[2], wt3ds[0]]);
 });
 
 test('should filter by endDate', () => {
@@ -31,8 +31,8 @@ test('should filter by endDate', () => {
     startDate: undefined,
     endDate: moment(0).add(2, 'days')
   };
-  const result = selectExpenses(expenses, filters);
-  expect(result).toEqual([expenses[0], expenses[1]]);
+  const result = selectWt3ds(wt3ds, filters);
+  expect(result).toEqual([wt3ds[0], wt3ds[1]]);
 });
 
 test('should sort by date', () => {
@@ -42,8 +42,8 @@ test('should sort by date', () => {
     startDate: undefined,
     endDate: undefined
   };
-  const result = selectExpenses(expenses, filters);
-  expect(result).toEqual([expenses[2], expenses[0], expenses[1]]);
+  const result = selectWt3ds(wt3ds, filters);
+  expect(result).toEqual([wt3ds[2], wt3ds[0], wt3ds[1]]);
 });
 
 test('should sort by amount', () => {
@@ -53,6 +53,6 @@ test('should sort by amount', () => {
     startDate: undefined,
     endDate: undefined
   };
-  const result = selectExpenses(expenses, filters);
-  expect(result).toEqual([expenses[1], expenses[2], expenses[0]]);
+  const result = selectWt3ds(wt3ds, filters);
+  expect(result).toEqual([wt3ds[1], wt3ds[2], wt3ds[0]]);
 });

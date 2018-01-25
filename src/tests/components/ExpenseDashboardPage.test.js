@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ExpenseDashboardPage from '../../components/ExpenseDashboardPage';
+import Wt3dDashboardPage from '../../components/Wt3dDashboardPage';
 
-test('should render ExpenseDashboardPage correctly', () => {
-  const wrapper = shallow(<ExpenseDashboardPage />);
+test('should render Wt3dDashboardPage correctly', () => {
+  const wrapper = shallow(<Wt3dDashboardPage />);
   expect(wrapper).toMatchSnapshot();
 });

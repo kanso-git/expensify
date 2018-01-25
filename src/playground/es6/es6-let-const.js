@@ -24,3 +24,4 @@ if(fullName){
 console.log(firstName) ;// will work also 
 
 // if you change var firstName to const or let firstName the console.log ouside the block will not work
+// if you try to use a let variable before its definiton you will hget an Uncaught ReferenceError while with var te vakue will be undefined 

@@ -1,5 +1,5 @@
-import expensesReducer from '../../reducers/expenses';
-import expenses from '../fixtures/expenses';
+import expensesReducer from '../../reducers/wt3ds';
+import wt3ds from '../fixtures/wt3ds';
 
 test('should set default state', () => {
   const state = expensesReducer(undefined, { type: '@@INIT' });
@@ -8,20 +8,20 @@ test('should set default state', () => {
 
 test('should remove expense by id', () => {
   const action = {
-    type: 'REMOVE_EXPENSE',
-    id: expenses[1].id
+    type: 'REMOVE_WT3D',
+    id: wt3ds[1].id
   };
-  const state = expensesReducer(expenses, action);
-  expect(state).toEqual([expenses[0], expenses[2]]);
+  const state = expensesReducer(wt3ds, action);
+  expect(state).toEqual([wt3ds[0], wt3ds[2]]);
 });
 
-test('should not remove expenses if id not found', () => {
+test('should not remove wt3ds if id not found', () => {
   const action = {
-    type: 'REMOVE_EXPENSE',
+    type: 'REMOVE_WT3D',
     id: '-1'
   };
-  const state = expensesReducer(expenses, action);
-  expect(state).toEqual(expenses);
+  const state = expensesReducer(wt3ds, action);
+  expect(state).toEqual(wt3ds);
 });
 
 test('should add an expense', () => {
@@ -33,35 +33,44 @@ test('should add an expense', () => {
     amount: 29500
   };
   const action = {
-    type: 'ADD_EXPENSE',
+    type: 'ADD_WT3D',
     expense
   };
-  const state = expensesReducer(expenses, action);
-  expect(state).toEqual([...expenses, expense]);
+  const state = expensesReducer(wt3ds, action);
+  expect(state).toEqual([...wt3ds, expense]);
 });
 
 test('should edit an expense', () => {
   const amount = 122000;
   const action = {
-    type: 'EDIT_EXPENSE',
-    id: expenses[1].id,
+    type: 'EDIT_WT3D',
+    id: wt3ds[1].id,
     updates: {
       amount
     }
   };
-  const state = expensesReducer(expenses, action);
+  const state = expensesReducer(wt3ds, action);
   expect(state[1].amount).toBe(amount);
 });
 
 test('should not edit an expense if id not found', () => {
   const amount = 122000;
   const action = {
-    type: 'EDIT_EXPENSE',
+    type: 'EDIT_WT3D',
     id: '-1',
     updates: {
       amount
     }
   };
-  const state = expensesReducer(expenses, action);
-  expect(state).toEqual(expenses);
+  const state = expensesReducer(wt3ds, action);
+  expect(state).toEqual(wt3ds);
+});
+
+test('should set wt3ds', () => {
+  const action = {
+    type: 'SET_WT3DS',
+    wt3ds: [wt3ds[1]]
+  };
+  const state = expensesReducer(wt3ds, action);
+  expect(state).toEqual([wt3ds[1]]);
 });

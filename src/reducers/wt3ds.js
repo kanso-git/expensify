@@ -1,17 +1,17 @@
-// Expenses Reducer
+// wt3ds Reducer
 
 const expensesReducerDefaultState = [];
 
 export default (state = expensesReducerDefaultState, action) => {
   switch (action.type) {
-    case 'ADD_EXPENSE':
+    case 'ADD_WT3D':
       return [
         ...state,
         action.expense
       ];
-    case 'REMOVE_EXPENSE':
+    case 'REMOVE_WT3D':
       return state.filter(({ id }) => id !== action.id);
-    case 'EDIT_EXPENSE':
+    case 'EDIT_WT3D':
       return state.map((expense) => {
         if (expense.id === action.id) {
           return {
@@ -22,9 +22,8 @@ export default (state = expensesReducerDefaultState, action) => {
           return expense;
         };
       });
-      case 'SET_EXPENSES':
-       return action.expenses;
-      
+    case 'SET_WT3DS':
+      return action.wt3ds;
     default:
       return state;
   }

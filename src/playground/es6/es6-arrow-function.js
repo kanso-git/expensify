@@ -80,7 +80,7 @@ const user1 ={
 
 /**
     * in the case below the arrow function inside forEach 
-    * lives in the printPlacesLived function so it has  has access to  printPlacesLived socpe which the user scope
+    * lives in the printPlacesLived function so it has  has access to  printPlacesLived socpe which is user scope
    */
   const user3 ={
     name:'abdallah',
@@ -110,7 +110,7 @@ const user2 ={
 
 /**
 * in the case below the arrow function assigned to printPlacesLived
-* lives in user object so it  has access to  the global socpe so the this.name will truns into error 
+* lives in user4 object so it  has access to  the global socpe so the this.name will truns into error 
 */
     const user4 ={
     name:'abdallah',

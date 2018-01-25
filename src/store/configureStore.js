@@ -1,24 +1,21 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import expensesReducer from '../reducers/expenses';
-import filtersReducer from '../reducers/filters';
 import thunk from 'redux-thunk';
+import expensesReducer from '../reducers/wt3ds';
+import filtersReducer from '../reducers/filters';
+import authReducer from '../reducers/auth';
+import bdlReducer from '../reducers/bdl';
 
-
-/*
-https://github.com/gaearon/redux-thunk
-Redux Thunk middleware allows you to write action creators that return a function instead of an action. 
-The thunk can be used to delay the dispatch of an action, or to dispatch only if a certain condition is met. 
-The inner function receives the store methods dispatch and getState as parameters.
-*/
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default () => {
   const store = createStore(
     combineReducers({
-      expenses: expensesReducer,
-      filters: filtersReducer
+      wt3ds: expensesReducer,
+      filters: filtersReducer,
+      auth: authReducer,
+      bdl: bdlReducer,
     }),
-    composeEnhancers(applyMiddleware(thunk))
+    composeEnhancers(applyMiddleware(thunk)),
   );
 
   return store;

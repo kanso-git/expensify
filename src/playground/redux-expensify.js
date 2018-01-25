@@ -1,8 +1,8 @@
 import { createStore, combineReducers } from 'redux';
 import uuid from 'uuid';
 
-// ADD_EXPENSE
-const addExpense = (
+// ADD_WT3D
+const addWt3d = (
   {
     description = '',
     note = '',
@@ -10,7 +10,7 @@ const addExpense = (
     createdAt = 0
   } = {}
 ) => ({
-  type: 'ADD_EXPENSE',
+  type: 'ADD_WT3D',
   expense: {
     id: uuid(),
     description,
@@ -20,15 +20,15 @@ const addExpense = (
   }
 });
 
-// REMOVE_EXPENSE
-const removeExpense = ({ id } = {}) => ({
-  type: 'REMOVE_EXPENSE',
+// REMOVE_WT3D
+const removeWt3d = ({ id } = {}) => ({
+  type: 'REMOVE_WT3D',
   id
 });
 
-// EDIT_EXPENSE
-const editExpense = (id, updates) => ({
-  type: 'EDIT_EXPENSE',
+// EDIT_WT3D
+const editWt3d = (id, updates) => ({
+  type: 'EDIT_WT3D',
   id,
   updates
 });
@@ -61,20 +61,20 @@ const setEndDate = (endDate) => ({
   endDate
 });
 
-// Expenses Reducer
+// wt3ds Reducer
 
 const expensesReducerDefaultState = [];
 
 const expensesReducer = (state = expensesReducerDefaultState, action) => {
   switch (action.type) {
-    case 'ADD_EXPENSE':
+    case 'ADD_WT3D':
       return [
         ...state,
         action.expense
       ];
-    case 'REMOVE_EXPENSE':
+    case 'REMOVE_WT3D':
       return state.filter(({ id }) => id !== action.id);
-    case 'EDIT_EXPENSE':
+    case 'EDIT_WT3D':
       return state.map((expense) => {
         if (expense.id === action.id) {
           return {
@@ -131,9 +131,9 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
   }
 };
 
-// Get visible expenses
-const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
-  return expenses.filter((expense) => {
+// Get visible wt3ds
+const getVisibleWt3ds = (wt3ds, { text, sortBy, startDate, endDate }) => {
+  return wt3ds.filter((expense) => {
     const startDateMatch = typeof startDate !== 'number' || expense.createdAt >= startDate;
     const endDateMatch = typeof endDate !== 'number' || expense.createdAt <= endDate;
     const textMatch = expense.description.toLowerCase().includes(text.toLowerCase());
@@ -152,22 +152,22 @@ const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
 
 const store = createStore(
   combineReducers({
-    expenses: expensesReducer,
+    wt3ds: expensesReducer,
     filters: filtersReducer
   })
 );
 
 store.subscribe(() => {
   const state = store.getState();
-  const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
-  console.log(visibleExpenses);
+  const visibleWt3ds = getVisibleWt3ds(state.wt3ds, state.filters);
+  console.log(visibleWt3ds);
 });
 
-const expenseOne = store.dispatch(addExpense({ description: 'Rent', amount: 100, createdAt: -21000 }));
-const expenseTwo = store.dispatch(addExpense({ description: 'Coffee', amount: 300, createdAt: -1000 }));
+const expenseOne = store.dispatch(addWt3d({ description: 'Rent', amount: 100, createdAt: -21000 }));
+const expenseTwo = store.dispatch(addWt3d({ description: 'Coffee', amount: 300, createdAt: -1000 }));
 
-// store.dispatch(removeExpense({ id: expenseOne.expense.id }));
-// store.dispatch(editExpense(expenseTwo.expense.id, { amount: 500 }));
+// store.dispatch(removeWt3d({ id: expenseOne.expense.id }));
+// store.dispatch(editWt3d(expenseTwo.expense.id, { amount: 500 }));
 
 // store.dispatch(setTextFilter('ffe'));
 // store.dispatch(setTextFilter());
@@ -180,7 +180,7 @@ store.dispatch(sortByAmount());
 // store.dispatch(setEndDate(999)); // endDate 1250
 
 const demoState = {
-  expenses: [{
+  wt3ds: [{
     id: 'poijasdfhwer',
     description: 'January Rent',
     note: 'This was the final payment for that address',
