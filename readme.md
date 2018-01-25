@@ -1,6 +1,10 @@
 # Git Commands  ---
 
 
+       https://github.com/JedWatson/react-select/blob/master/examples/src/components/Multiselect.js
+
+       some options :
+       
         <div className="checkbox-list">
           <label className="checkbox">
             <input type="checkbox" className="checkbox-control" name="removeSelected" checked={this.state.removeSelected} onChange={this.toggleCheckbox} />
@@ -23,3 +27,7 @@
             <span className="checkbox-label">rtl</span>
           </label>
         </div>
+
+
+
+        https://react-table.js.org/#/story/readme
